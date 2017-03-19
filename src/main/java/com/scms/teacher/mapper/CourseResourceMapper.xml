@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scms.teacher.dao.CourseResourceMapper">
+  <resultMap id="BaseResultMap" type="com.scms.entity.CourseResource">
+    <id column="course_resource_id" jdbcType="INTEGER" property="courseResourceId" />
+    <result column="grant_course_id" jdbcType="INTEGER" property="grantCourseId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.scms.entity.CourseResource">
+    <result column="desc" jdbcType="LONGVARCHAR" property="desc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    course_resource_id, grant_course_id, name, upload_time, size, path
+  </sql>
+  <sql id="Blob_Column_List">
+    desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from course_resource
+    where course_resource_id = #{courseResourceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course_resource
+    where course_resource_id = #{courseResourceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.scms.entity.CourseResource">
+    insert into course_resource (course_resource_id, grant_course_id, 
+      name, upload_time, size, 
+      path, desc)
+    values (#{courseResourceId,jdbcType=INTEGER}, #{grantCourseId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP}, #{size,jdbcType=INTEGER}, 
+      #{path,jdbcType=VARCHAR}, #{desc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scms.entity.CourseResource">
+    insert into course_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseResourceId != null">
+        course_resource_id,
+      </if>
+      <if test="grantCourseId != null">
+        grant_course_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseResourceId != null">
+        #{courseResourceId,jdbcType=INTEGER},
+      </if>
+      <if test="grantCourseId != null">
+        #{grantCourseId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scms.entity.CourseResource">
+    update course_resource
+    <set>
+      <if test="grantCourseId != null">
+        grant_course_id = #{grantCourseId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where course_resource_id = #{courseResourceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scms.entity.CourseResource">
+    update course_resource
+    set grant_course_id = #{grantCourseId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      size = #{size,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=LONGVARCHAR}
+    where course_resource_id = #{courseResourceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scms.entity.CourseResource">
+    update course_resource
+    set grant_course_id = #{grantCourseId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      size = #{size,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR}
+    where course_resource_id = #{courseResourceId,jdbcType=INTEGER}
+  </update>
+</mapper>

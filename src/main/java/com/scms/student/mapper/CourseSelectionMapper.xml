@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scms.student.dao.CourseSelectionMapper">
+  <resultMap id="BaseResultMap" type="com.scms.entity.CourseSelection">
+    <result column="student_id" jdbcType="BIGINT" property="studentId" />
+    <result column="grant_course_id" jdbcType="INTEGER" property="grantCourseId" />
+    <result column="grade" jdbcType="SMALLINT" property="grade" />
+    <result column="ordinary_grade" jdbcType="SMALLINT" property="ordinaryGrade" />
+    <result column="exam_grade" jdbcType="SMALLINT" property="examGrade" />
+  </resultMap>
+  <insert id="insert" parameterType="com.scms.entity.CourseSelection">
+    insert into select_course (student_id, grant_course_id, grade, 
+      ordinary_grade, exam_grade)
+    values (#{studentId,jdbcType=BIGINT}, #{grantCourseId,jdbcType=INTEGER}, #{grade,jdbcType=SMALLINT}, 
+      #{ordinaryGrade,jdbcType=SMALLINT}, #{examGrade,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scms.entity.CourseSelection">
+    insert into select_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="grantCourseId != null">
+        grant_course_id,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="ordinaryGrade != null">
+        ordinary_grade,
+      </if>
+      <if test="examGrade != null">
+        exam_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentId != null">
+        #{studentId,jdbcType=BIGINT},
+      </if>
+      <if test="grantCourseId != null">
+        #{grantCourseId,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=SMALLINT},
+      </if>
+      <if test="ordinaryGrade != null">
+        #{ordinaryGrade,jdbcType=SMALLINT},
+      </if>
+      <if test="examGrade != null">
+        #{examGrade,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

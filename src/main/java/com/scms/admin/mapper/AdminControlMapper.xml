@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scms.admin.dao.AdminControlMapper">
+  <resultMap id="BaseResultMap" type="com.scms.entity.AdminControl">
+    <result column="if_comment_course" jdbcType="CHAR" property="ifCommentCourse" />
+    <result column="if_select_course" jdbcType="CHAR" property="ifSelectCourse" />
+    <result column="if_record_results" jdbcType="CHAR" property="ifRecordResults" />
+  </resultMap>
+  <insert id="insert" parameterType="com.scms.entity.AdminControl">
+    insert into control (if_comment_course, if_select_course, if_record_results
+      )
+    values (#{ifCommentCourse,jdbcType=CHAR}, #{ifSelectCourse,jdbcType=CHAR}, #{ifRecordResults,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scms.entity.AdminControl">
+    insert into control
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ifCommentCourse != null">
+        if_comment_course,
+      </if>
+      <if test="ifSelectCourse != null">
+        if_select_course,
+      </if>
+      <if test="ifRecordResults != null">
+        if_record_results,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ifCommentCourse != null">
+        #{ifCommentCourse,jdbcType=CHAR},
+      </if>
+      <if test="ifSelectCourse != null">
+        #{ifSelectCourse,jdbcType=CHAR},
+      </if>
+      <if test="ifRecordResults != null">
+        #{ifRecordResults,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scms.admin.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.scms.entity.Course">
+    <id column="course_id" jdbcType="BIGINT" property="courseId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="credit" jdbcType="INTEGER" property="credit" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="period" jdbcType="INTEGER" property="period" />
+    <result column="attribution" jdbcType="VARCHAR" property="attribution" />
+    <result column="nature" jdbcType="VARCHAR" property="nature" />
+    <result column="dept_name" jdbcType="BIGINT" property="deptName" />
+    <result column="campus" jdbcType="VARCHAR" property="campus" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.scms.entity.Course">
+    <result column="desc" jdbcType="LONGVARCHAR" property="desc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    course_id, name, credit, address, period, attribution, nature, dept_name, campus
+  </sql>
+  <sql id="Blob_Column_List">
+    desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from course
+    where course_id = #{courseId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from course
+    where course_id = #{courseId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.scms.entity.Course">
+    insert into course (course_id, name, credit, 
+      address, period, attribution, 
+      nature, dept_name, campus, 
+      desc)
+    values (#{courseId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{credit,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{period,jdbcType=INTEGER}, #{attribution,jdbcType=VARCHAR}, 
+      #{nature,jdbcType=VARCHAR}, #{deptName,jdbcType=BIGINT}, #{campus,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scms.entity.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="credit != null">
+        credit,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="period != null">
+        period,
+      </if>
+      <if test="attribution != null">
+        attribution,
+      </if>
+      <if test="nature != null">
+        nature,
+      </if>
+      <if test="deptName != null">
+        dept_name,
+      </if>
+      <if test="campus != null">
+        campus,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        #{courseId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null">
+        #{credit,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=INTEGER},
+      </if>
+      <if test="attribution != null">
+        #{attribution,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null">
+        #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=BIGINT},
+      </if>
+      <if test="campus != null">
+        #{campus,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scms.entity.Course">
+    update course
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null">
+        credit = #{credit,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null">
+        period = #{period,jdbcType=INTEGER},
+      </if>
+      <if test="attribution != null">
+        attribution = #{attribution,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null">
+        nature = #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        dept_name = #{deptName,jdbcType=BIGINT},
+      </if>
+      <if test="campus != null">
+        campus = #{campus,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where course_id = #{courseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scms.entity.Course">
+    update course
+    set name = #{name,jdbcType=VARCHAR},
+      credit = #{credit,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      period = #{period,jdbcType=INTEGER},
+      attribution = #{attribution,jdbcType=VARCHAR},
+      nature = #{nature,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=BIGINT},
+      campus = #{campus,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=LONGVARCHAR}
+    where course_id = #{courseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scms.entity.Course">
+    update course
+    set name = #{name,jdbcType=VARCHAR},
+      credit = #{credit,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      period = #{period,jdbcType=INTEGER},
+      attribution = #{attribution,jdbcType=VARCHAR},
+      nature = #{nature,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=BIGINT},
+      campus = #{campus,jdbcType=VARCHAR}
+    where course_id = #{courseId,jdbcType=BIGINT}
+  </update>
+</mapper>
