@@ -32,8 +32,8 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.scms.entity"/>
-
-    </bean>
+        <property name="mapperLocations" value="classpath*:com/scms/*/mapper/*.xml"/>
+     </bean>
 
 
     <!--扫描mapper-->

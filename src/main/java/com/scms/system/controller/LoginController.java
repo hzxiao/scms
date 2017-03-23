@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by hz on 17-3-21.
@@ -15,18 +17,12 @@ public class LoginController {
 
     @Resource(name = "userServiceImpl")
     UserService service;
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login(@RequestParam(value = "u") String user) {
-        User user1 = new User();
-//
-        user1.setId(1);
-        user1.setUsername("hz");
-        user1.setPassword("hh");
-        user1.setRole(1);
-        service.insert(user1);
-        User user2 = service.selectByPrimaryKey(1);
-        System.out.println(user2.getUsername());
+    public String login(HttpServletRequest request, HttpSession session) {
+        String username = (String) request.getParameter("username");
+        String password = (String) request.getParameter("password");
+        System.out.println(username+": "+password);
         return null;
     }
 }
