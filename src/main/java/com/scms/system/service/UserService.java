@@ -8,4 +8,6 @@ import com.scms.entity.User;
 public interface UserService {
     int insert(User record);
     User selectByPrimaryKey(Integer id);
+
+    User checkByPassword(String username, String password);
 }

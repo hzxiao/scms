@@ -23,4 +23,12 @@ public class UserServiceImpl implements UserService {
     public User selectByPrimaryKey(Integer id) {
         return mapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public User checkByPassword(String username, String password) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        return mapper.selectByUsernamePassword(user);
+    }
 }
