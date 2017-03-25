@@ -22,10 +22,8 @@
     desc
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from course
     where course_id = #{courseId,jdbcType=BIGINT}
   </select>

@@ -11,6 +11,16 @@ public class CourseSelection {
 
     private Short examGrade;
 
+    private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public Long getStudentId() {
         return studentId;
     }
