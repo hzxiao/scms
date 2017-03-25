@@ -39,7 +39,7 @@ public class LoginController {
             case Role.TEACHER:
                 break;
             case Role.STUDENT:
-                return "login";
+                return "student/main";
         }
         return "redirect:/";
     }

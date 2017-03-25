@@ -1,5 +1,7 @@
 package com.scms.entity;
 
+import java.util.List;
+
 public class GrantCourse {
     private Integer grantCourseId;
 
@@ -16,6 +18,36 @@ public class GrantCourse {
     private Integer margin;
 
     private Integer status;
+
+    private Course course;
+
+    private List<CourseSelection> courseSelectionList;
+
+    private Teacher teacher;
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public List<CourseSelection> getCourseSelectionList() {
+        return courseSelectionList;
+    }
+
+    public void setCourseSelectionList(List<CourseSelection> courseSelectionList) {
+        this.courseSelectionList = courseSelectionList;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 
     public Integer getGrantCourseId() {
         return grantCourseId;

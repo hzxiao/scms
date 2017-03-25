@@ -8,6 +8,11 @@
     <result column="ordinary_grade" jdbcType="SMALLINT" property="ordinaryGrade" />
     <result column="exam_grade" jdbcType="SMALLINT" property="examGrade" />
   </resultMap>
+  <select id="selectByGrantId" resultMap="BaseResultMap">
+    SELECT * from select_course
+    WHERE grant_course_id = #{grantCourseId,jdbcType=INTEGER}
+  </select>
+
   <insert id="insert" parameterType="com.scms.entity.CourseSelection">
     insert into select_course (student_id, grant_course_id, grade, 
       ordinary_grade, exam_grade)
