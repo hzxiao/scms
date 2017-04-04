@@ -27,17 +27,19 @@ public class LoginController {
         String password = request.getParameter("password");
         User user = service.checkByPassword(username, password);
         if (user == null) { //账号或密码错误
+            logger.info("user: " + username + ", pass: " + password + " login fail");
             return "redirect:/";
         }
         //登录成功
         session.setAttribute("username", username);
         session.setAttribute("role", user.getRole());
-        logger.info("user: " + username + " login");
+        logger.info("user: " + username + " login successfully");
         switch (user.getRole()) {
             case Role.ADMIN:
                 break;
             case Role.TEACHER:
-                break;
+                return "/teacher/main";
+            
             case Role.STUDENT:
                 return "student/main";
         }
