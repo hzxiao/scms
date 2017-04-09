@@ -18,6 +18,14 @@
   <sql id="Blob_Column_List">
     desc
   </sql>
+  <select id="selectByGrantCourseID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    ,
+    <include refid="Blob_Column_List"/>
+    FROM course_resource
+    WHERE grant_course_id = #{grantCourseId, jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />

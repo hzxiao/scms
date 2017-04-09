@@ -2,6 +2,8 @@ package com.scms.teacher.dao;
 
 import com.scms.entity.CourseResource;
 
+import java.util.List;
+
 public interface CourseResourceMapper {
     int deleteByPrimaryKey(Integer courseResourceId);
 
@@ -16,4 +18,6 @@ public interface CourseResourceMapper {
     int updateByPrimaryKeyWithBLOBs(CourseResource record);
 
     int updateByPrimaryKey(CourseResource record);
+
+    List<CourseResource> selectByGrantCourseID(Integer grantCourseId);
 }

@@ -18,6 +18,25 @@
     teacher_id, pwd, name, department, sex, age, credit, email, phone, teacher_title, 
     school_year
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM teacher
+  </select>
+
+  <select id="selectByDept" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM teacher
+    WHERE department = #{dept, jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectSincePrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM teacher
+    limit #{teacherId}, 20
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
